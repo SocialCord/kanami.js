@@ -1,0 +1,84 @@
+{
+  "name": "kanami.js",
+  "version": "0.1.2",
+  "description": "Простенькая библиотека враппер реализации API для SocialCord",
+  "keywords": [
+    "socialcord",
+    "kanami.js",
+    "kanami",
+    "wrapper",
+    "api",
+    "social"
+  ],
+  "homepage": "https://github.com/masero01/kanami.js#readme",
+  "bugs": {
+    "url": "https://github.com/masero01/kanami.js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masero01/kanami.js.git"
+  },
+  "license": "MIT",
+  "author": "masero01 (https://github.com/masero01)",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./builders": {
+      "import": "./dist/builders/index.js",
+      "types": "./dist/builders/index.d.ts"
+    },
+    "./managers": {
+      "import": "./dist/managers/index.js",
+      "types": "./dist/managers/index.d.ts"
+    },
+    "./structures": {
+      "import": "./dist/structures/index.js",
+      "types": "./dist/structures/index.d.ts"
+    },
+    "./utils": {
+      "import": "./dist/utils/index.js",
+      "types": "./dist/utils/index.d.ts"
+    }
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "test": "tests"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "lint": "eslint src --ext .ts,.js",
+    "format": "prettier --write \"src/**/*.{ts,js,json}\"",
+    "docs": "typedoc --out docs src/index.ts"
+  },
+  "dependencies": {
+    "eventemitter3": "^5.0.1",
+    "socket.io-client": "^4.8.3",
+    "undici": "^5.28.2",
+    "@livekit/protocol": "^1.45.3",
+    "@livekit/rtc-node": "^0.13.25",
+    "ffmpeg-static": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.1.0",
+    "typedoc": "^0.25.4",
+    "typescript": "^5.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
