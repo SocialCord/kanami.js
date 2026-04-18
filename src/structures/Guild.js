@@ -1,4 +1,4 @@
-import { Collection } from './Collection.ts'
+import { Collection } from './Collection.js'
 import { Channel } from './Channel.js'
 import { GuildMember } from './GuildMember.js'
 import { Role } from './Role.js'
