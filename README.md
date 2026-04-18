@@ -61,6 +61,17 @@ Kanami.JS - Является библиотекой для простой реа
 
 ---
 
+## Как получить токен?
+- 1. Регистрируемся и заходим в аккаунт
+- 2. На сервере поддержки пишем @maserokun в лс или на сервере (с указанием никнейма боту, а так же аватаркой)
+- 3. Получаем свой токен
+
+К сожалению, портал разработчика только в разработке. Релиз ожидается уже 21.04 числа, вместе с обновлённой библиотекой :З
+Если вы нашли ошибку в библиотеке, создайте реквест на [GitHub](https://github.com/SocialCord/kanami.js)  ❤️
+
+
+---
+
 ## 📦 Установка
 
 ```bash
@@ -97,7 +108,7 @@ client.on('messageCreate', async (message) => {
   }
 });
 
-await client.login('ваш-токен');
+await client.login('ваш-токен-бота');
 ```
 
 Запустите: `node bot.js`
@@ -117,7 +128,7 @@ await channel.send('Привет!');
 await message.reply('Ответ!');
 
 // С упоминанием
-await message.reply({ content: 'Привет!', mentions: ['user-id'] });
+await message.reply({ content: 'Привет <@73664522963034112>!', mentions: ['user-id'] });
 ```
 
 ### Кнопки (интеракции)
@@ -213,7 +224,7 @@ const channel = await guild.createChannel('новый-канал', 0, { topic: '
 const role = await guild.createRole({
   name: 'Модератор',
   color: '#FF0000',
-  permissions: permissions.MANAGE_MESSAGES //Ничего не указывайте для дефолтных прав
+  permissions: permissions.MANAGE_MESSAGES 
 });
 
 // Выдать роль участнику
