@@ -1,6 +1,6 @@
 {
   "name": "kanami.js",
-  "version": "0.1.5",
+  "version": "0.1.4",
   "description": "Простенькая библиотека враппер реализации API для SocialCord",
   "keywords": [
     "socialcord",
@@ -27,13 +27,10 @@
       "types": "./src/index.d.ts"
     }
   },
-  "main": "src/index.js",
-  "types": "src/index.d.ts",
-  "directories": {
-    "test": "tests"
-  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "src",
+    "dist",
     "README.md",
     "LICENSE",
     "CHANGELOG.md"
@@ -42,7 +39,9 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "lint": "eslint src --ext .ts,.js",
     "format": "prettier --write \"src/**/*.{ts,js,json}\"",
-    "docs": "typedoc --out docs src/index.ts"
+    "docs": "typedoc --out docs src/index.ts",
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "eventemitter3": "^5.0.1",

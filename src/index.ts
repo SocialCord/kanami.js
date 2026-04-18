@@ -1,12 +1,12 @@
-export { Client } from './client.ts' //2 файла иначе ругается (брух)
-export type { ClientOptions, ClientEvents } from './client.ts'
+export { Client } from './client.js' //2 файла иначе ругается (брух)
+export type { ClientOptions, ClientEvents } from './client.js'
 export { User } from './structures/User.js'
 export { Message } from './structures/Message.js'
 export { Channel } from './structures/Channel.js'
 export { Guild } from './structures/Guild.js'
 export { GuildMember } from './structures/GuildMember.js'
 export { Role } from './structures/Role.js'
-export { Collection } from './structures/Collection.ts'
+export { Collection } from './structures/Collection.js'
 export { Permissions } from './structures/Permissions.js'
 export { UserManager } from './managers/UserManager.js'
 export { ChannelManager } from './managers/ChannelManager.js'

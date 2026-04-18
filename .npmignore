@@ -1,45 +1,21 @@
-# Source files
 tests/
 examples/
 docs/
 node_modules/
-
-tests/
-examples/
 .git/
 .github/
 *.log
-*.ts 
 tsconfig.json
-
 .eslintrc
 .prettierrc
 .jest.config.js
-
-# Git
-.git/
 .gitignore
-
-# CI/CD
-.github/
 .gitlab-ci.yml
-
-# Logs
-*.log
-npm-debug.log*
-
-# IDE
 .vscode/
 .idea/
-
-# OS
 .DS_Store
-Thumbs.db
-
-# Coverage
 coverage/
-.nyc_output/
-
-# Temp
 *.tmp
 *.swp
+
+src/

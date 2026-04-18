@@ -1,4 +1,4 @@
-import { Collection } from '../structures/Collection.ts'
+import { Collection } from '../structures/Collection.js'
 import { Role } from '../structures/Role.js'
 
 export class RoleManager {

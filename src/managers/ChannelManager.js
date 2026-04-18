@@ -1,4 +1,4 @@
-import { Collection } from '../structures/Collection.ts'
+import { Collection } from '../structures/Collection.js'
 import { Channel } from '../structures/Channel.js'
 
 export class ChannelManager {
