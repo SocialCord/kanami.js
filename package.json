@@ -1,6 +1,6 @@
 {
   "name": "kanami.js",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Простенькая библиотека враппер реализации API для SocialCord",
   "keywords": [
     "socialcord",
