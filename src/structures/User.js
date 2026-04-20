@@ -23,10 +23,9 @@ export class User {
     return this;
   }
 
-  async setAvatar(avatar) {
-    const res = await this._client.rest.updateUser({ avatar });
-    this.avatar = res.avatar;
-    return this;
+  async getAvatar(avatar) {
+    const res = await this._client.rest.getUser({ avatar });
+    return res.avatar;
   }
 
   async setUsername(username) {

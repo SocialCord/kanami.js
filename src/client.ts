@@ -194,8 +194,8 @@ export class Client extends EventEmitter<ClientEvents> {
             })
           })
         },
-        deferReply: async () => console.log('[Interaction] deferReply called'), //Эти методы реализованы под будущее
-        deferUpdate: async () => console.log('[Interaction] deferUpdate called')
+        deferReply: async () => console.log('[Kanami.JS] [Interaction] deferReply вызван\n[Kanami.JS] [Interaction] Данное сообщение является лишь сопровождением, которое не влияет не на что'), //Эти методы реализованы под будущее
+        deferUpdate: async () => console.log('[Kanami.JS] [Interaction] deferUpdate вызван\n[Kanami.JS] [Interaction] Данное сообщение является лишь сопровождением, которое не влияет не на что')
       }
       const handler = this.interactionHandlers.get(interaction.customId)
       if (handler) {

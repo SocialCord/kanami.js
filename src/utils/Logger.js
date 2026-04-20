@@ -1,5 +1,5 @@
 //мб кому надо будет, простенький логгер 
-
+//TODO: добавить данный лог в использование пакета с указанием debug: true, debugType: ...Типы дебага
 export class Logger {
   constructor(name = 'Client') {
     this.name = name

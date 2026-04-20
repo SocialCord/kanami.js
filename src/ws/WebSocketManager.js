@@ -30,7 +30,7 @@ export class WebSocketManager extends EventEmitter {
         })
 
         this.socket.on('connect', async () => {
-          console.log('[SDK] WebSocket connected')
+          console.log('[Kanami.JS] [DEBUG / Socket] Успешно подключено')
           this.reconnectAttempts = 0
           this.connected = true
           this.startHeartbeat()
@@ -52,7 +52,7 @@ export class WebSocketManager extends EventEmitter {
             })
 
             const guildsList = await this.client.rest.getUserGuilds()
-            console.log(`[SDK] Загружено ${guildsList.length} гильдий`)
+            console.log(`[Kanami.JS] [DEBUG / Socket] Загружено ${guildsList.length} гильдий`)
 
             const fetchPromises = []
             for (const guildData of guildsList) {
@@ -60,12 +60,12 @@ export class WebSocketManager extends EventEmitter {
               this.client.guilds.cache.set(guild.id, guild)
               fetchPromises.push(
                 this.client.guilds.fetch(guild.id, { force: true })
-                  .catch(err => console.error(`[SDK] Ошибка загрузки гильдии ${guild.id}:`, err.message))
+                  .catch(err => console.error(`[Kanami.JS] [DEBUG / Socket] Ошибка загрузки гильдии ${guild.id}:`, err.message, `Просьба при необходимости сообщить разработчику`))
               )
             }
 
             await Promise.allSettled(fetchPromises)
-            console.log('[SDK] Все гильдии и их данные загружены в кеш')
+            console.log('[Kanami.JS] [DEBUG / Socket] Все гильдии и их данные загружены в кеш')
 
             this.client.friends = response.data.friends
             this.client.badges = response.data.badges
@@ -84,7 +84,7 @@ export class WebSocketManager extends EventEmitter {
         })
 
         this.socket.on('connect_error', (error) => {
-          console.error('[SDK] WebSocket connection error:', error)
+          console.error('[Kanami.JS] [DEBUG / Socket] Ошибка подключения сокета:', error)
           this.scheduleReconnect()
           if (this.reconnectAttempts === 0) reject(error)
         })
@@ -234,15 +234,15 @@ export class WebSocketManager extends EventEmitter {
 
   scheduleReconnect() {
     if (this.reconnectAttempts >= this.maxReconnectAttempts) {
-      console.error('[SDK] Max reconnection attempts reached')
+      console.error('[Kanami.JS] [DEBUG / Socket] Максимальное количество попыток переподключения достигнуто')
       return
     }
     const delay = Math.min(30000, this.reconnectDelay * Math.pow(1.5, this.reconnectAttempts))
     this.reconnectAttempts++
     setTimeout(() => {
       if (!this.connected) {
-        console.log(`[SDK] Reconnecting... attempt ${this.reconnectAttempts}`)
-        this.connect(this.client.token).catch(err => console.error('[SDK] Reconnect failed:', err))
+        console.log(`[Kanami.JS] [DEBUG / Socket] Переподключение.. Попытка #${this.reconnectAttempts}`)
+        this.connect(this.client.token).catch(err => console.error('[DEBUG / SOCKET] Ошибка переподключения:', err))
       }
     }, delay)
   }
@@ -260,10 +260,7 @@ export class WebSocketManager extends EventEmitter {
       channelId,
       content: '',
       guildId: options.guildId || null,
-      author: {
-        id: this.client.user.id,
-        username: this.client.user.username
-      },
+      authorId: this.client.user.id,
       attachments: options.attachments || [],
       mentions: options.mentions || [],
       type: options.type || 0,
@@ -294,7 +291,7 @@ export class WebSocketManager extends EventEmitter {
     }
 
     const event = options.isDM ? 'messages://send/dm' : 'messages://send'
-    console.log("[MESSAGE SEND]", JSON.stringify(payload, null, 2))
+    console.log("[Kanami.JS] [DEBUG / MESSAGE SEND]", JSON.stringify(payload, null, 2))
     this.socket.emit(event, payload, (response) => {
       if (response && response.error) {
         callback?.(new Error(response.message), null)
@@ -319,10 +316,7 @@ export class WebSocketManager extends EventEmitter {
       messageId,
       channelId,
       content: options.content || '',
-      author: {
-        id: this.client.user.id,
-        username: this.client.user.username
-      }
+      authorId: this.client.user.id
     }
 
     if (options.embeds && Array.isArray(options.embeds)) {
@@ -332,7 +326,7 @@ export class WebSocketManager extends EventEmitter {
       payload.components = options.components.map(comp => comp.toJSON ? comp.toJSON() : comp)
     }
 
-    console.log("[MESSAGE EDIT]", payload)
+    console.log("[Kanami.JS] [DEBUG / MESSAGE EDIT]", payload)
     this.socket.emit('messages://edit', payload, (response) => {
       if (response && response.error) {
         callback?.(new Error(response.error))
