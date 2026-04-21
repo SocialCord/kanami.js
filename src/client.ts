@@ -137,6 +137,7 @@ export class Client extends EventEmitter<ClientEvents> {
   }
 
   public async login(token: string): Promise<User | null> {
+    if(!token || token?.length < 1 || token?.startsWith("U2F")) throw Error("Для авторизации требуется указать токен бота. Перейдите на https://social.shizue.top, войдите или зарегистрируйтесь и перейдите на https://social.shizue.top/developers для создания бота")
     this.token = token
     this.rest.setToken(token)
     await this.ws.connect(token)
